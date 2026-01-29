@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./otg.png" alt="Claude-OTG Logo" width="200">
+  <img src="./otg.png" alt="Claude-OTG Logo" width="400">
 </p>
 
 # Claude-OTG (On The Go)
