@@ -92,6 +92,7 @@ sudo tee /usr/local/share/claude-otg/help.txt > /dev/null << 'EOF'
 ║  SESSION                                                     ║
 ║  ─────────────────────────────────────────────────────────── ║
 ║  Prefix + d       Detach (keeps session running)            ║
+║  Prefix + Q       Kill session and exit (cleanup)           ║
 ║  Prefix + $       Rename session                            ║
 ║  Prefix + ,       Rename window                             ║
 ║  Prefix + &       Close window                              ║
@@ -132,6 +133,9 @@ echo -e "  ${DIM}─────────────────────
 echo ""
 echo -e "  ${DIM}Press Enter to start Claude...${NC}"
 read -r
+echo ""
+echo -e "  ${CYAN}Starting Claude...${NC}"
+echo ""
 EOF
 sudo chmod +x /usr/local/share/claude-otg/welcome.sh
 
@@ -190,6 +194,18 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
+
+# Handle commands
+if [ "$1" = "kill" ] || [ "$1" = "--kill" ]; then
+    if tmux has-session -t $SESSION_NAME 2>/dev/null; then
+        echo -e "${YELLOW}Killing session '$SESSION_NAME'...${NC}"
+        tmux kill-session -t $SESSION_NAME
+        echo -e "${GREEN}Session terminated.${NC}"
+    else
+        echo -e "${YELLOW}No active session found.${NC}"
+    fi
+    exit 0
+fi
 
 # Allow tunnel name override via argument
 if [ -n "$1" ]; then TUNNEL_NAME="$1"; fi
@@ -265,7 +281,7 @@ set -g window-status-activity-style 'fg=#ffcc00,bold'
 set -g window-status-separator ''
 
 # Pane borders
-set -g pane-border-style 'fg=#333'
+set -g pane-border-style 'fg=#333333'
 set -g pane-active-border-style 'fg=#00d9ff'
 
 # Message styling
@@ -309,6 +325,9 @@ bind -n PageDown send-keys PageDown
 
 # Quick window creation in current directory
 bind c new-window -c "#{pane_current_path}"
+
+# Kill session and exit
+bind Q confirm-before -p "Kill session and exit? (y/n)" "kill-session"
 
 # ═══════════════════════════════════════════════════════════
 # COPY MODE IMPROVEMENTS
@@ -403,6 +422,7 @@ echo ""
 echo "Usage:"
 echo "  claude-otg              # Use default tunnel name"
 echo "  claude-otg my-tunnel    # Use custom tunnel name"
+echo "  claude-otg --kill       # Kill session and clean up"
 echo ""
 echo "New Features:"
 echo "  - Press Ctrl+A then ? for help menu"

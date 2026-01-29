@@ -73,6 +73,9 @@ claude-otg my-special-tunnel
 # Or set via environment variable
 export CLAUDE_OTG_TUNNEL="my-tunnel"
 claude-otg
+
+# Kill the session and clean up
+claude-otg --kill
 ```
 
 ### Mobile Access
@@ -95,6 +98,7 @@ Prefix key is **Ctrl+A** (way easier on mobile than the default Ctrl+B).
 | `Ctrl+A C` | Copy last Claude response |
 | `Ctrl+A m` | Toggle mouse mode |
 | `Ctrl+A d` | Detach (session keeps running) |
+| `Ctrl+A Q` | Kill session and exit (cleanup) |
 | `Ctrl+A w` | List all windows |
 | `Ctrl+A 1-9` | Jump to window |
 | `Ctrl+A Tab` | Last active window |
@@ -182,6 +186,7 @@ Your terminal might not support 256 colors. VS Code web handles this fine though
 ## Tips
 
 - **Detach, don't close** - `Ctrl+A d` keeps your session alive
+- **Clean exit** - `Ctrl+A Q` or `claude-otg --kill` terminates the session completely
 - **Save the good stuff** - `Ctrl+A S` dumps the whole conversation to a file
 - **Multiple projects** - Run `claude-otg` from different directories for separate windows
 - **Reconnect** - Run `claude-otg` from home directory to rejoin an existing session
