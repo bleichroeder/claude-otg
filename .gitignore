@@ -1,0 +1,23 @@
+# VS Code CLI (downloaded at runtime)
+code
+vscode_cli.tar.gz
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp files
+*.tmp
+*.temp
