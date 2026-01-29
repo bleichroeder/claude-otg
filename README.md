@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./otg.png" alt="Claude-OTG Logo" width="200">
+</p>
+
 # Claude-OTG (On The Go)
 
 **Stop babysitting your terminal from your desk chair.**
