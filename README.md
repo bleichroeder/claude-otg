@@ -74,18 +74,23 @@ claude-otg my-special-tunnel
 export CLAUDE_OTG_TUNNEL="my-tunnel"
 claude-otg
 
+# Check session and tunnel status
+claude-otg --status
+
 # Kill the session and clean up
 claude-otg --kill
+
+# Re-authenticate tunnel (if having connection issues)
+claude-otg --tunnel
 ```
 
 ### Mobile Access
 
 1. Run `claude-otg` from your project directory
-2. Copy the tunnel URL: `https://vscode.dev/tunnel/your-tunnel-name`
-3. Open it on your phone
-4. Sign in with GitHub
-5. Open the terminal
-6. Resume your horizontal lifestyle
+2. **First time:** Follow the GitHub authentication prompts
+3. Scan the QR code with your phone (or copy the URL)
+4. Open the terminal in VS Code web
+5. Resume your horizontal lifestyle
 
 ## Keyboard Shortcuts
 
